@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>RegCar</title>
+  <link rel="stylesheet" href="assets/index.css">
+</head>
+
+<body>
+  <!-- TODO: Buscar por dni -->
+  <!-- TODO: Guardar nuevos carnets -->
+  <div class="navbar is-dark is-spaced">
+    <div class="navbar-brand">
+      <span class="navbar-item subtitle">RegCar</span>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="field is-grouped">
+            <div class="control">
+              <div class="field has-addons">
+                <div class="control">
+                  <input class="input" id="txtSearch" type="search" placeholder="DNI">
+                </div>
+                <div class="control">
+                  <button id="btnSearch" class="button is-success">Buscar</button>
+                </div>
+              </div>
+            </div>
+            <div class="control">
+              <button class="button" id="btnNew">Nuevo</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- INFORMATION -->
+  <section class="section">
+    <div class="container">
+      <!-- NOTIFICACION -->
+      <div id="dispSuccessNotification" class="notification is-success is-hidden is-light">
+        <button class="delete"></button>
+        <span id="dispSuccessNotificationMessage">NOTIFICACION</span>
+      </div>
+      <div id="dispDangerNotification" class="notification is-danger is-hidden is-light">
+        <button class="delete"></button>
+        <span id="dispDangerNotificationMessage">NOTIFICACION</span>
+      </div>
+      <div class="columns">
+        <div class="column is-half">
+          <fieldset disabled>
+            <span class="title heading">Datos personales</span>
+            <!-- FIELD: NOMBRES -->
+            <div class="field">
+              <label class="label">Nombres</label>
+              <div class="control">
+                <input class="input" id="dispNames" type="text">
+              </div>
+            </div>
+            <!-- FIELD: APELLIDOS -->
+            <div class="field">
+              <label class="label">Apellidos</label>
+              <div class="control">
+                <input class="input" id="dispSurnames" type="text">
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column">
+                <!-- FIELD: DNI -->
+                <div class="field">
+                  <label class="label">DNI</label>
+                  <div class="control">
+                    <input class="input" id="dispID" type="text">
+                  </div>
+                </div>
+              </div>
+              <div class="column">
+                <!-- FIELD: EDAD -->
+                <div class="field">
+                  <label class="label">Edad</label>
+                  <div class="control">
+                    <input class="input" id="dispAge" type="text">
+                  </div>
+                </div>
+              </div>
+              <div class="column">
+                <!-- FIELD: CELULAR -->
+                <div class="field">
+                  <label class="label">Celular</label>
+                  <div class="control">
+                    <input class="input" id="dispTelephone" type="text">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column is-two-thirds">
+                <!-- FIELD: DIRECCION -->
+                <div class="field">
+                  <label class="label">Direccion</label>
+                  <div class="control">
+                    <input type="text" id="dispAddress" class="input">
+                  </div>
+                </div>
+              </div>
+              <div class="column is-one-third">
+                <!-- FIELD: H.C. -->
+                <div class="field">
+                  <label class="label">H.C</label>
+                  <div class="control">
+                    <!-- CH: Clinical History -->
+                    <input type="text" id="dispCH" class="input">
+                  </div>
+                </div>
+              </div>
+            </div>
+            </article>
+          </fieldset>
+          <br>
+          <div class="buttons is-right">
+            <button class="button is-dark" id="btnEdit">Editar</button>
+          </div>
+        </div>
+        <!-- !!FIRST COLUMN -->
+        <!-- SECOND COLUMN -->
+        <div class="column is-half">
+          <span class="title heading">Carnet</span>
+
+          <!-- FIELD: ACTIVIDDAD -->
+          <div class="field">
+            <label class="label">Actividad</label>
+            <div class="control">
+              <input type="text" id="dispWork" class="input">
+            </div>
+          </div>
+          <!-- FIELD: ESTABLECIMIENTO -->
+          <div class="field">
+            <label class="label">Establecimiento</label>
+            <div class="control">
+              <input type="text" id="dispWorkplace" class="input">
+            </div>
+          </div>
+
+          <hr>
+          <fieldset>
+            <!-- FIELD: FECHA INICIO -->
+            <div class="field columns">
+              <div class="field-label is-normal">
+                <label class="label column" for="dispStartDate">Fecha inicio:</label>
+              </div>
+              <div class="control column">
+                <input id="dispStartDate" type="date" class="input">
+              </div>
+            </div>
+            <!-- FIELD: FECHA VENCIMIENTO -->
+            <div class="field columns">
+              <div class="field-label is-normal">
+                <label class="label column" for="dispEndDate">Fecha vencimiento:</label>
+              </div>
+              <div class="control column">
+                <input id="dispEndDate" type="date" class="input">
+              </div>
+            </div>
+          </fieldset>
+          <hr>
+          <div class="buttons is-right">
+            <button class="button is-link" id="btnSave">Guardar</button>
+            <button class="button is-dark" id="btnPrint">Imprimir</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL -->
+  <div class="modal" id="frmNewCarnet">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Información Personal</p>
+        <button class="delete" aria-label="close" id="btnDeleteFrmNewCarnet"></button>
+      </header>
+      <!-- MODAL: CONTENT -->
+      <section class="modal-card-body">
+        <div class="field">
+          <label class="label" for="txtNames">Nombres</label>
+          <div class="control">
+            <input class="input" id="txtNames">
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label" for="txtSurnames">Apellidos</label>
+          <div class="control">
+            <input class="input" id="txtSurnames" type="text">
+          </div>
+        </div>
+        <!-- MODAL: COLUMNS 1 -->
+        <div class="columns">
+          <!-- MODAL: COLUMN -->
+          <div class="column">
+            <div class="field">
+              <label class="label" for="txtID">DNI</label>
+              <div class="control">
+                <input class="input" id="txtID" type="text">
+              </div>
+            </div>
+          </div>
+          <!-- MODAL: COLUMN -->
+          <div class="column">
+            <div class="field">
+              <label class="label" for="txtTelephone">Celular</label>
+              <div class="control">
+                <input class="input" id="txtTelephone">
+              </div>
+            </div>
+          </div>
+          <!-- MODAL: COLUMN -->
+          <div class="column">
+            <div class="field">
+              <label class="label" for="txtAge">Edad</label>
+              <div class="control">
+                <input class="input" id="txtAge" type="number" min="0" max="100">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MODAL: COLUMNS 2 -->
+        <div class="columns">
+          <div class="column is-two-thirds">
+            <div class="field">
+              <label for="txtAddress" class="label">Direccion</label>
+              <div class="control">
+                <input type="text" id="txtAddress" class="input">
+              </div>
+            </div>
+          </div>
+          <div class="column is-one-third">
+            <div class="field">
+              <label for="txtCH" class="label">H.C.</label>
+              <div class="control">
+                <input type="text" id="txtCH" class="input">
+              </div>
+            </div>
+          </div>
+        </div>
+        <input type="text" id="txtOption" class="is-hidden">
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button is-link" id="btnRegister">Guardar</button>
+        <button class="button is-light" id="btnFrmNewCarnetCancel">Cancelar</button>
+        <button class="button is-light" id="btnTestValues">Test</button>
+      </footer>
+    </div>
+  </div>
+  <script src="./assets/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      /* const succDel = SuccessNotificationDelete.parentNode
+      const dangDel =  */
+      (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+        $delete.addEventListener('click', (e) => {
+          e.target.parentNode.classList.add('is-hidden')
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

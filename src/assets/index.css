@@ -1,0 +1,15 @@
+@import '../../node_modules/bulma/css/bulma.min.css';
+
+body {
+  overflow: hidden;
+}
+
+.notification.is-success.is-light {
+  background-color: #effaf3;
+  color: #257942;
+}
+
+.notification.is-danger.is-light {
+  background-color: #feecf0;
+  color: #cc0f35;
+}
